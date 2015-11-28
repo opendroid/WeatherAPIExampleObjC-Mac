@@ -13,6 +13,15 @@
 		74FD81CC1C08DAD500AEC52C /* CityWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74FD81CA1C08DAD500AEC52C /* CityWeather.xcdatamodeld */; };
 		74FD81CE1C08DAD500AEC52C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74FD81CD1C08DAD500AEC52C /* Assets.xcassets */; };
 		74FD81D11C08DAD500AEC52C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FD81CF1C08DAD500AEC52C /* Main.storyboard */; };
+		74FD81DA1C08F51600AEC52C /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD81D91C08F51600AEC52C /* Utilities.m */; };
+		74FD81DD1C08F57600AEC52C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD81DC1C08F57600AEC52C /* Constants.m */; };
+		74FD81E31C08F6FE00AEC52C /* Weather+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD81E01C08F6FE00AEC52C /* Weather+CoreDataProperties.m */; };
+		74FD81E41C08F6FE00AEC52C /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD81E21C08F6FE00AEC52C /* Weather.m */; };
+		74FD81E71C08F75E00AEC52C /* Weather+OpenWeather.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD81E51C08F75E00AEC52C /* Weather+OpenWeather.m */; };
+		74FD81E91C0901BF00AEC52C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FD81E81C0901BF00AEC52C /* Social.framework */; };
+		74FD81EC1C09099200AEC52C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FD81EB1C09099200AEC52C /* Accounts.framework */; };
+		74FD81EE1C09180E00AEC52C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FD81ED1C09180E00AEC52C /* Cocoa.framework */; };
+		74FD81F01C09182800AEC52C /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FD81EF1C09182800AEC52C /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +35,20 @@
 		74FD81CD1C08DAD500AEC52C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74FD81D01C08DAD500AEC52C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74FD81D21C08DAD500AEC52C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74FD81D81C08F51600AEC52C /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		74FD81D91C08F51600AEC52C /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		74FD81DB1C08F57600AEC52C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		74FD81DC1C08F57600AEC52C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		74FD81DF1C08F6FE00AEC52C /* Weather+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Weather+CoreDataProperties.h"; path = "Weather/Weather+CoreDataProperties.h"; sourceTree = "<group>"; };
+		74FD81E01C08F6FE00AEC52C /* Weather+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Weather+CoreDataProperties.m"; path = "Weather/Weather+CoreDataProperties.m"; sourceTree = "<group>"; };
+		74FD81E11C08F6FE00AEC52C /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weather.h; path = Weather/Weather.h; sourceTree = "<group>"; };
+		74FD81E21C08F6FE00AEC52C /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weather.m; path = Weather/Weather.m; sourceTree = "<group>"; };
+		74FD81E51C08F75E00AEC52C /* Weather+OpenWeather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Weather+OpenWeather.m"; path = "Weather/Weather+OpenWeather.m"; sourceTree = "<group>"; };
+		74FD81E61C08F75E00AEC52C /* Weather+OpenWeather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Weather+OpenWeather.h"; path = "Weather/Weather+OpenWeather.h"; sourceTree = "<group>"; };
+		74FD81E81C0901BF00AEC52C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		74FD81EB1C09099200AEC52C /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		74FD81ED1C09180E00AEC52C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		74FD81EF1C09182800AEC52C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +56,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74FD81F01C09182800AEC52C /* AppKit.framework in Frameworks */,
+				74FD81EE1C09180E00AEC52C /* Cocoa.framework in Frameworks */,
+				74FD81EC1C09099200AEC52C /* Accounts.framework in Frameworks */,
+				74FD81E91C0901BF00AEC52C /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +69,10 @@
 		74FD81B51C08DAD500AEC52C = {
 			isa = PBXGroup;
 			children = (
+				74FD81EF1C09182800AEC52C /* AppKit.framework */,
+				74FD81ED1C09180E00AEC52C /* Cocoa.framework */,
+				74FD81EB1C09099200AEC52C /* Accounts.framework */,
+				74FD81E81C0901BF00AEC52C /* Social.framework */,
 				74FD81C01C08DAD500AEC52C /* CityWeather */,
 				74FD81BF1C08DAD500AEC52C /* Products */,
 			);
@@ -58,6 +89,11 @@
 		74FD81C01C08DAD500AEC52C /* CityWeather */ = {
 			isa = PBXGroup;
 			children = (
+				74FD81DE1C08F6DE00AEC52C /* Weather */,
+				74FD81DB1C08F57600AEC52C /* Constants.h */,
+				74FD81DC1C08F57600AEC52C /* Constants.m */,
+				74FD81D81C08F51600AEC52C /* Utilities.h */,
+				74FD81D91C08F51600AEC52C /* Utilities.m */,
 				74FD81C11C08DAD500AEC52C /* AppDelegate.h */,
 				74FD81C21C08DAD500AEC52C /* AppDelegate.m */,
 				74FD81C71C08DAD500AEC52C /* ViewController.h */,
@@ -77,6 +113,19 @@
 				74FD81C51C08DAD500AEC52C /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		74FD81DE1C08F6DE00AEC52C /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				74FD81E51C08F75E00AEC52C /* Weather+OpenWeather.m */,
+				74FD81E61C08F75E00AEC52C /* Weather+OpenWeather.h */,
+				74FD81DF1C08F6FE00AEC52C /* Weather+CoreDataProperties.h */,
+				74FD81E01C08F6FE00AEC52C /* Weather+CoreDataProperties.m */,
+				74FD81E11C08F6FE00AEC52C /* Weather.h */,
+				74FD81E21C08F6FE00AEC52C /* Weather.m */,
+			);
+			name = Weather;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +201,11 @@
 				74FD81CC1C08DAD500AEC52C /* CityWeather.xcdatamodeld in Sources */,
 				74FD81C61C08DAD500AEC52C /* main.m in Sources */,
 				74FD81C31C08DAD500AEC52C /* AppDelegate.m in Sources */,
+				74FD81E41C08F6FE00AEC52C /* Weather.m in Sources */,
+				74FD81DA1C08F51600AEC52C /* Utilities.m in Sources */,
+				74FD81DD1C08F57600AEC52C /* Constants.m in Sources */,
+				74FD81E31C08F6FE00AEC52C /* Weather+CoreDataProperties.m in Sources */,
+				74FD81E71C08F75E00AEC52C /* Weather+OpenWeather.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +345,7 @@
 				74FD81D71C08DAD500AEC52C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

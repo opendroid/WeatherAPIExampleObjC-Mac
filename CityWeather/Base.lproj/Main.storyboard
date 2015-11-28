@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6198" systemVersion="14A297b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6198"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -641,12 +642,12 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider=""/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--Window Controller - Window-->
+        <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
@@ -667,15 +668,348 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="572" height="405"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nii-aV-aKz">
+                                <rect key="frame" x="7" y="375" width="421" height="22"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="GKz-5i-MQD">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uFW-GN-Ud3">
+                                <rect key="frame" x="454" y="369" width="117" height="32"/>
+                                <animations/>
+                                <buttonCell key="cell" type="push" title="Get Weather" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nEa-1k-nzY">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="getWeatherHandler:" target="XfG-lQ-9wD" id="miF-8a-JeK"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idi-yh-963">
+                                <rect key="frame" x="534" y="338" width="30" height="30"/>
+                                <animations/>
+                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="globe100x100" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="hDC-bj-VEr">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="mapItHandler:" target="XfG-lQ-9wD" id="3sg-JG-djm"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5RH-kb-atX">
+                                <rect key="frame" x="5" y="345" width="523" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="CIty, Country (City ID)" id="lfa-Ku-00r">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJd-za-OGa">
+                                <rect key="frame" x="12" y="156" width="40" height="40"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="humidity100x100" id="cSM-7o-bkp"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cWq-vu-3Rf">
+                                <rect key="frame" x="514" y="80" width="50" height="50"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sunset100x100" id="Fzx-EQ-p1V"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lEu-Oz-DL6">
+                                <rect key="frame" x="274" y="265" width="50" height="50"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="wind_speed100x100" id="OLq-6W-apx"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nri-GV-GUf">
+                                <rect key="frame" x="289" y="80" width="50" height="50"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sunrise100x100" id="iDn-D7-xbD"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dsi-O4-0fJ">
+                                <rect key="frame" x="63" y="97" width="100" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="33.333" id="ufh-IK-v4h">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J2j-MQ-3yO">
+                                <rect key="frame" x="174" y="303" width="37" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="110℉" id="UCb-M2-kwT">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bvz-jy-QfM">
+                                <rect key="frame" x="5" y="218" width="194" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="It is Clear Today" id="Gua-Mm-Unc">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dpn-Xq-oqG">
+                                <rect key="frame" x="63" y="168" width="100" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="100 %" id="wv6-yl-e5j">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="9Ov-Ta-ey7">
+                                <rect key="frame" x="436" y="378" width="16" height="16"/>
+                                <animations/>
+                            </progressIndicator>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wze-jR-dq3">
+                                <rect key="frame" x="44" y="260" width="131" height="60"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="100℉" id="lvN-uk-wU7">
+                                    <font key="font" metaFont="system" size="50"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cn3-ZU-p7v">
+                                <rect key="frame" x="7" y="265" width="50" height="50"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="temperature100x100" id="AgO-FX-kMN"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NVw-So-aOi">
+                                <rect key="frame" x="173" y="260" width="38" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="-40℉" id="aas-Ll-cBV">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I8Y-hs-NmD">
+                                <rect key="frame" x="209" y="300" width="20" height="20"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="max100x100" id="XRz-pS-IoW"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qma-cC-mYa">
+                                <rect key="frame" x="209" y="260" width="20" height="20"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="min100x100" id="Mcs-0F-fjK"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3pT-yZ-UHU">
+                                <rect key="frame" x="320" y="303" width="57" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="100 mph" id="9CR-Ah-tdm">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HWX-RT-0Cv">
+                                <rect key="frame" x="320" y="260" width="34" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="360°" id="GEF-lc-6JH">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="77q-fa-eXN">
+                                <rect key="frame" x="7" y="80" width="50" height="50"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="rain100x100" id="458-14-uEs"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLQ-08-38P">
+                                <rect key="frame" x="355" y="260" width="40" height="40"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="dir_SSW" id="CyW-zI-MBT"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rCg-rp-3Tk">
+                                <rect key="frame" x="7" y="12" width="50" height="50"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="snow100x100" id="rnK-r8-8ka"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9C6-pe-2Fv">
+                                <rect key="frame" x="289" y="12" width="50" height="50"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="hourglass_sand_top100x100" id="6b5-MI-pHH"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7eb-yQ-L78">
+                                <rect key="frame" x="63" y="29" width="100" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Snow" id="zpc-A0-arf">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w7Y-uo-E5d">
+                                <rect key="frame" x="341" y="184" width="173" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1234 hPa" id="Ryg-BL-ay6">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zAj-Km-N7w">
+                                <rect key="frame" x="289" y="151" width="50" height="50"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="atmospheric_pressure_100x100" id="6Aq-ZK-3ut"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Iv-K5-j8f">
+                                <rect key="frame" x="341" y="151" width="173" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1000 hPa" id="xTB-QY-Z87">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="78S-n8-3JK">
+                                <rect key="frame" x="341" y="113" width="173" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="dd-MM-yyyy HH:MM AM" id="U1a-Xv-hjf">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TXg-Wa-F9B">
+                                <rect key="frame" x="341" y="80" width="173" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="dd-MM-yyyy HH:MM AM" id="RPL-cg-zrl">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wym-Yu-E57">
+                                <rect key="frame" x="341" y="45" width="173" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="dd-MM-yyyy HH:MM AM" id="FMb-q6-PEb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oTA-DR-417">
+                                <rect key="frame" x="341" y="12" width="173" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="30 Minute 20 seconds ago" id="Bq9-qs-UTd">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNW-uU-D2q">
+                                <rect key="frame" x="534" y="303" width="30" height="30"/>
+                                <animations/>
+                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="share100x100" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="dvz-j5-8qb">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="shareItHandler:" target="XfG-lQ-9wD" id="Mpq-gf-6zj"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JN4-fA-A3Y">
+                                <rect key="frame" x="535" y="268" width="30" height="30"/>
+                                <animations/>
+                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="twitter100x100" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="Gim-8M-8Gf">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="tweetItHandler:" target="XfG-lQ-9wD" id="5Ue-kW-e4A"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Yz-cn-wTk">
+                                <rect key="frame" x="203" y="218" width="132" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(Clear)" id="4cW-Hw-JhE">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OcR-6T-Ble">
+                                <rect key="frame" x="194" y="80" width="50" height="50"/>
+                                <animations/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="rain100x100" id="nJX-Le-AGr"/>
+                            </imageView>
+                        </subviews>
+                        <animations/>
                     </view>
+                    <connections>
+                        <outlet property="cityStateFetchedNTF" destination="5RH-kb-atX" id="yW9-LI-xRm"/>
+                        <outlet property="cityStateUserNTF" destination="Nii-aV-aKz" id="hmc-tf-Lev"/>
+                        <outlet property="descriptionMainNTF" destination="7Yz-cn-wTk" id="GGC-XZ-o7C"/>
+                        <outlet property="descriptionNTF" destination="bvz-jy-QfM" id="U9e-LG-kAk"/>
+                        <outlet property="fetchProgressNPI" destination="9Ov-Ta-ey7" id="aNb-dK-vQJ"/>
+                        <outlet property="getWeatherNSB" destination="uFW-GN-Ud3" id="NpX-Gy-LeV"/>
+                        <outlet property="hourglassIconNIV" destination="9C6-pe-2Fv" id="3gL-X3-dqo"/>
+                        <outlet property="humidityIconNIV" destination="EJd-za-OGa" id="jb4-td-EJW"/>
+                        <outlet property="humidityNTF" destination="Dpn-Xq-oqG" id="Kv5-aC-daw"/>
+                        <outlet property="lastFetchAgoNTF" destination="oTA-DR-417" id="iz3-bp-qbi"/>
+                        <outlet property="lastFetchTimeNTF" destination="wym-Yu-E57" id="JSf-gq-EDS"/>
+                        <outlet property="mapItNSB" destination="idi-yh-963" id="hiJ-w3-Lhr"/>
+                        <outlet property="pressureAtSeaNTF" destination="4Iv-K5-j8f" id="1XK-bC-YNA"/>
+                        <outlet property="pressureIconNIV" destination="zAj-Km-N7w" id="Nr8-GH-g8b"/>
+                        <outlet property="pressureNTF" destination="w7Y-uo-E5d" id="2eg-OB-3m1"/>
+                        <outlet property="rainIconNIV" destination="77q-fa-eXN" id="2Fq-yc-vao"/>
+                        <outlet property="rainNTF" destination="dsi-O4-0fJ" id="pkG-0G-fy8"/>
+                        <outlet property="shareItNSB" destination="oNW-uU-D2q" id="Crw-tB-djE"/>
+                        <outlet property="snowIconNIV" destination="rCg-rp-3Tk" id="JCc-IT-Rr6"/>
+                        <outlet property="snowNTF" destination="7eb-yQ-L78" id="Z53-4b-CXM"/>
+                        <outlet property="sunriseIconNIV" destination="nri-GV-GUf" id="tch-Sf-hnW"/>
+                        <outlet property="sunriseTimeNTF" destination="78S-n8-3JK" id="Ovu-Ij-hVi"/>
+                        <outlet property="sunsetIconNIV" destination="cWq-vu-3Rf" id="S96-s6-i5p"/>
+                        <outlet property="sunsetTimeNTF" destination="TXg-Wa-F9B" id="rgD-yT-RQT"/>
+                        <outlet property="tempIconNIV" destination="cn3-ZU-p7v" id="L8E-0n-iAz"/>
+                        <outlet property="tempMaxIconNIV" destination="I8Y-hs-NmD" id="dg9-XQ-zFw"/>
+                        <outlet property="tempMaxNTF" destination="J2j-MQ-3yO" id="bH1-yd-Knj"/>
+                        <outlet property="tempMinIconNIV" destination="Qma-cC-mYa" id="T9J-Ck-aYH"/>
+                        <outlet property="tempMinNTF" destination="NVw-So-aOi" id="VLv-2d-cDz"/>
+                        <outlet property="tempNowNTF" destination="Wze-jR-dq3" id="paG-g0-MBS"/>
+                        <outlet property="tweetItNSB" destination="JN4-fA-A3Y" id="oz3-eP-xEw"/>
+                        <outlet property="weatherIconNIV" destination="OcR-6T-Ble" id="iIB-ME-kgm"/>
+                        <outlet property="windDirectionIconNIV" destination="SLQ-08-38P" id="jgv-78-rWe"/>
+                        <outlet property="windDirectionNTF" destination="HWX-RT-0Cv" id="FcC-zL-nOx"/>
+                        <outlet property="windSpeedIconNIV" destination="lEu-Oz-DL6" id="ZFb-oT-l2O"/>
+                        <outlet property="windSpeedNTF" destination="3pT-yZ-UHU" id="3MY-1O-RzM"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="121" y="722.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="atmospheric_pressure_100x100" width="100" height="100"/>
+        <image name="dir_SSW" width="100" height="100"/>
+        <image name="globe100x100" width="100" height="100"/>
+        <image name="hourglass_sand_top100x100" width="100" height="100"/>
+        <image name="humidity100x100" width="100" height="100"/>
+        <image name="max100x100" width="100" height="100"/>
+        <image name="min100x100" width="100" height="100"/>
+        <image name="rain100x100" width="100" height="100"/>
+        <image name="share100x100" width="100" height="100"/>
+        <image name="snow100x100" width="100" height="100"/>
+        <image name="sunrise100x100" width="100" height="100"/>
+        <image name="sunset100x100" width="100" height="100"/>
+        <image name="temperature100x100" width="100" height="100"/>
+        <image name="twitter100x100" width="100" height="100"/>
+        <image name="wind_speed100x100" width="100" height="100"/>
+    </resources>
 </document>
