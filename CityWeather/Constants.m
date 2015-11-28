@@ -10,10 +10,10 @@
 
 
 BOOL const kATDebugON = YES; // enable debug
-BOOL const kATDebugDetailON = YES; // detail debugs
+BOOL const kATDebugDetailON = NO; // detail debugs
 BOOL const kATDebugErrorON = YES; // Show erros NSLOG
 NSTimeInterval const kATDataCacheInterval20Minutes = 20*60; // 20 Minutes interval
-BOOL const kATDebugDelayON = YES; // For testing
+BOOL const kATDebugDelayON = NO; // For simulating network API call delays
 
 // JSON Names -- these are names of the JSOB fields in as they are fetched from the API
 NSString *const kATJsonBase = @"base";

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+@import AppKit;
 
 
 @implementation ViewController
@@ -39,6 +40,7 @@
     });
 }
 
+// Enable the buttons and hide progress bar animation.
 - (void) enableButtonsWithViewController: (ViewController *) vc {
     if (!vc) return;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -49,6 +51,7 @@
     });
 }
 
+// Refresh the UP with the weather data.
 - (void) refreshUIWithWeatherData: (Weather *) weather inViewController: (ViewController *) vc {
     if (!vc) return;
     if (!weather) return;
@@ -64,6 +67,7 @@
             vc.mapItNSB.hidden = NO;
         } else {
             vc.cityStateFetchedNTF.stringValue = @"";
+            vc.lastSavedLatLonOfCityState = @"";
             vc.mapItNSB.hidden = YES;
         }
 
@@ -204,48 +208,71 @@
     });
 }
 
+// Handler to get the weather data for a city.
 - (IBAction)getWeatherHandler:(id)sender {
     
+    // Get the city.
     NSString *cityCountry = self.cityStateUserNTF.stringValue;
     if ([cityCountry compare:@""] == NSOrderedSame) {
         [self showAlertPopupWithMessage:@"Enter a City,Country"];
         return;
     }
     
+    // Disable buttons so user is blocked until data is fetched.
     self.getWeatherNSB.enabled = NO;
     self.fetchProgressNPI.hidden = NO;
     [self.fetchProgressNPI startAnimation:self];
+    
+    // CHeck if the data is in CoreData database -- nil if no data or it is obsolete.
     Weather *cityWeather = [Weather weatherWithCityCountry:cityCountry inAppDelegate:self.appDelegate];
     __weak ViewController *weakSelf = self;
     if (!cityWeather) {
+        // Get the data from the OpenWeatherOrg
         [Utilities downloadWeatherDataFromAPIForCityCountry:cityCountry
-             successHandler:^(NSDictionary *data) {
-                 __strong ViewController * strongSelf = weakSelf;
-                 if (strongSelf && data) {
-                     Weather *weather = [Weather weatherWithOpenWeatherInfo:data inCityCountry:cityCountry inAppDelegate:strongSelf.appDelegate];
-                     [strongSelf refreshUIWithWeatherData:weather inViewController:strongSelf];
-                     
-                     [strongSelf enableButtonsWithViewController:strongSelf];
-                 }
-             } errorHandler:^(NSString *errorMessage) {
-                 __strong ViewController * strongSelf = weakSelf;
-                 if (strongSelf) {
-                     [strongSelf showAlertPopupWithMessage:errorMessage];
-                 }
-                 if (kATDebugErrorON) NSLog(@"getWeatherHandler-errorHandler:%@",errorMessage);
-                 [self enableButtonsWithViewController:self];
+            // Success got JSON dictionary bac
+            successHandler:^(NSDictionary *data) {
+                __strong ViewController * strongSelf = weakSelf;
+                if (strongSelf && data) {
+                    Weather *weather = [Weather weatherWithOpenWeatherInfo:data inCityCountry:cityCountry inAppDelegate:strongSelf.appDelegate];
+                    [strongSelf refreshUIWithWeatherData:weather inViewController:strongSelf];
+                    
+                    [strongSelf enableButtonsWithViewController:strongSelf];
+                }
+            }
+            // Error case
+            errorHandler:^(NSString *errorMessage) {
+                __strong ViewController * strongSelf = weakSelf;
+                if (strongSelf) {
+                    [strongSelf showAlertPopupWithMessage:errorMessage];
+                    if (kATDebugErrorON) NSLog(@"getWeatherHandler-errorHandler:%@",errorMessage);
+                    [strongSelf enableButtonsWithViewController:self];
+                }
             }];
     } else {
+        // Data was available in CoreData - show it
         [self refreshUIWithWeatherData:cityWeather inViewController:self];
         [self enableButtonsWithViewController:self];
     }
-    
 }
 
+// Open the Map app and show where is the city that was fetched.
 - (IBAction)mapItHandler:(id)sender {
-    if (kATDebugDetailON) NSLog(@"(Lat,Lon) (%@)",self.lastSavedLatLonOfCityState);
+    // URL to call apple maps app on Mac.
+    // http://maps.apple.com/?q=50.894967,4.341626 -- drops a PIN.
+    if([self.lastSavedLatLonOfCityState compare:@""] == NSOrderedSame) {
+        [self showAlertPopupWithMessage:@"Latitude and Longitude information is not there"];
+        return;
+    }
+    
+    // Form the maps app URL.
+    NSString *appUrlString =[NSString stringWithFormat: @"http://maps.apple.com/?q=%@", self.lastSavedLatLonOfCityState];
+    NSURL *url = [NSURL URLWithString:[appUrlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+    if (![[NSWorkspace sharedWorkspace] openURL:url]) {
+        [self showAlertPopupWithMessage:@"Opening Maps did not succeed."];
+    }
 }
 
+// Not working  yet
 - (IBAction)shareItHandler:(id)sender {
 }
 
@@ -294,13 +321,14 @@
                      }
                  }];
                 
-            } else {
+            } else { // Something wrong. Could not show the app data.
                 NSString *errMessage = [NSString stringWithFormat:@"Twitter Access Failed: granted:%d account:%ld", granted, accounts.count];
                 [self showAlertPopupWithMessage:errMessage];
             }
         }];
 }
 
+// Clears all UI elements
 - (void) initUI {
     // Set the UI to all hidden or empty
     self.cityStateFetchedNTF.stringValue = @"";
@@ -337,6 +365,7 @@
     self.lastFetchTimeNTF.stringValue = @"";
     self.lastFetchAgoNTF.stringValue = @"";
     self.weatherIconNIV.hidden = YES;
+    self.lastSavedLatLonOfCityState = @"";
 }
 
 @end

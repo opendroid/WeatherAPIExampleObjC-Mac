@@ -32,7 +32,7 @@
         
         // Error check 1: Network errors
         if (error && errorHandler) {
-            errorHandler(@"downloadWeatherDataFromAPIForCityCountry: Network error");
+            errorHandler([@"downloadWeatherDataFromAPIForCityCountry:" stringByAppendingString:error.localizedDescription]);
             return;
         }
         
@@ -61,7 +61,7 @@
         
         // Error check 5: JSON parse errors
         if (jsonError && errorHandler) {
-            errorHandler([NSString stringWithFormat:@"downloadWeatherDataFromAPIForCityCountry: JSON Parse Error: %@", jsonError]);
+            errorHandler([NSString stringWithFormat:@"downloadWeatherDataFromAPIForCityCountry: JSON Parse Error: %@", jsonError.localizedDescription]);
             return;
         }
         

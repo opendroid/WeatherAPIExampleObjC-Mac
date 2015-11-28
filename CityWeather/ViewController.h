@@ -59,6 +59,7 @@
 @property (nonatomic) AppDelegate *appDelegate;
 @property (nonatomic) NSString *lastSavedLatLonOfCityState;
 
+// Helper methods for updating UX and show errors etc.
 - (void) initUI;
 - (void) showAlertPopupWithMessage: (NSString *) message;
 - (void) enableButtonsWithViewController: (ViewController *) vc;

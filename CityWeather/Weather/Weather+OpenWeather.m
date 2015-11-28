@@ -43,7 +43,7 @@
     NSArray *matches = [context executeFetchRequest:fetchRequest error:&error];
     // If no matches or error or more than one city record
     if (!matches || error) {
-        if (kATDebugON && error) NSLog(@"weatherWithCityCountry: Error %@", error);
+        if (kATDebugON && error) NSLog(@"weatherWithCityCountry: Error %@", error.localizedDescription);
         if ([matches count] > 1){
             if (kATDebugON) NSLog(@"weatherWithCityCountry: %lu, city not unique", (unsigned long)[matches count]);
             // Delete stored cities data
@@ -53,7 +53,7 @@
             [appDelegate saveContext];
         }
         weather = nil;
-    } else if (matches && ([matches count] == 1)) { // Found one1
+    } else if (matches && ([matches count] > 0)) { // Found one1
         weather = [matches firstObject];
         NSDate *now = [NSDate date];
         NSTimeInterval interval = [now timeIntervalSinceDate:weather.serverFetchDate];
@@ -61,6 +61,7 @@
         if (interval < kATDataCacheInterval20Minutes) {
             // data was fetched in past 10 minutes. return it.
             if (kATDebugDetailON) NSLog(@"weatherWithCityCountry: Retrieveing weather data from CoreData: %@", weather);
+            if (kATDebugON) NSLog(@"weatherWithCityCountry: Matches found, count = %ld, city:%@", matches.count, cityCountry);
         } else {
             // Data is older than 10 minutes, remove from database
             [context deleteObject:weather];
@@ -69,10 +70,10 @@
             weather = nil;
         }
     } else if (matches && (matches.count == 0)) {
-        if (kATDebugON) NSLog(@"weatherWithCityCountry: No matches found, count = 0");
+        if (kATDebugON) NSLog(@"weatherWithCityCountry: No matches found, count = 0, city:%@", cityCountry);
         weather = nil;
     } else {
-        if (kATDebugON) NSLog(@"weatherWithCityCountry: matches - nil");
+        if (kATDebugON) NSLog(@"weatherWithCityCountry: No matched");
     }
     
     return weather;
